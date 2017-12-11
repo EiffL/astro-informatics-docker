@@ -56,7 +56,7 @@ RUN cd ${ASTROINFORMATICS_HOME} && \
     git clone https://github.com/EiffL/massmappy.git && \
     cd massmappy && \
     python setup.py install && \
-    ln -s notebooks /home/jovyan/massmappy
+    ln -s ${ASTROINFORMATICS_HOME}/massmappy/notebooks /home/jovyan/massmappy
 
 ENV MASSMAPPY ${ASTROINFORMATICS_HOME}/massmappy
 
