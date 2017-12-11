@@ -26,8 +26,35 @@ docker run -it --rm -p 8888:8888 -P eiffl/astroinformatics-jupyter
 ```
 
 Copy paste the notebook url shown in your terminal to your browser, it should
-look something like: `http://localhost:8888/?token=348e145241d1f0282ae2e433281d701ea305e1063ba80bde`
+look something like: `http://localhost:8888/?token=...`
 
-Feel free to try out the examples in the `massmappy` folder. Note however that
-you cannot save any modifications you make if you start Docker with this simple
-command.
+Feel free to try out the examples in the `massmappy` folder.
+
+Note however that you cannot save any modifications you make if you start Docker
+with this simple command. To run a Docker image with a mounted local folder to save your work:
+```
+docker run -it --rm -v [path to local folder]:/home/jovyan/work -p 8888:8888  eiffl/astroinformatics-jupyter
+```
+You can then save files within the `/home/jovyan/work` inside the image.
+
+## Building images
+
+### Automated build
+
+This is the preferred option, it uses dockerhub to automatically build the images.
+See this [link](https://docs.docker.com/docker-hub/builds/) to see how to set it up.
+
+### Manual build
+
+Just go to the sub-directory of the specific image you want to build, and run:
+```
+docker build  -t='eiffl/astroinformatics-jupyter' .
+```
+where the `-t` option here is used to set a specific tag for the image, should
+be changed based on what version you are building.
+
+To push the built image to docker hub:
+```
+docker push 'eiffl/astroinformatics-jupyter'
+```
+To run this command, you must first login to your dockerhub account with `docker login`.
